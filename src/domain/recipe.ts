@@ -1,6 +1,7 @@
 export class Recipe {
   _name!: string;
   _category?: string;
+  _time!: number;
 
   constructor(aName: string) {
     this.name = aName;
@@ -18,6 +19,17 @@ export class Recipe {
     this._name = trimmed;
   }
 
+  get time(): number {
+    return this._time;
+  }
+
+  set time(aTime: number) {
+    if (!aTime) {
+      throw new Error("El time-prep no puede ser vacio.")
+    }
+    this._time = aTime;
+  }
+
   get category(): string | undefined {
     return this._category;
   }
@@ -27,6 +39,6 @@ export class Recipe {
   }
 
   toString(): string {
-    return `Receta: ${this.name} - categoría: ${this.category}`;
+    return `Receta: ${this.name} - categoría: ${this.category} - time prep: ${this.time} min`;
   }
 }
