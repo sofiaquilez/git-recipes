@@ -1,6 +1,7 @@
 export class Recipe {
   _name!: string;
   _category?: string;
+  _time!: number;
   _desc!: string;
 
   constructor(aName: string) {
@@ -17,6 +18,17 @@ export class Recipe {
       throw new Error("El nombre de la receta no puede ser vacío.");
     }
     this._name = trimmed;
+  }
+
+  get time(): number {
+    return this._time;
+  }
+
+  set time(aTime: number) {
+    if (!aTime) {
+      throw new Error("El time-prep no puede ser vacio.")
+    }
+    this._time = aTime;
   }
 
   get desc(): string {
@@ -36,6 +48,6 @@ export class Recipe {
   }
 
   toString(): string {
-    return `Receta: ${this.name} - categoría: ${this.category} - descripcion: ${this.desc}`;
+    return `Receta: ${this.name} - categoría: ${this.category} - descripcion: ${this.desc} - time prep: ${this.time} min`;
   }
 }
